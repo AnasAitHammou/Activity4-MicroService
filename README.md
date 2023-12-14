@@ -63,7 +63,11 @@ CommandLineRunner start(CustomerRepository customerRepository){
         </details>
 
 <details>
-        <summary style="font-size:15px;cursor:pointer">📌 4. INVENTORY-SERVICE (Click to expand 🖱)</summary>
+        <details>
+  <summary class="expandable-section">📝 4. INVENTORY-SERVICE (Click to expand 🖱)</summary>
+  <!-- Your content goes here -->
+</details>
+
 <h5>Entity Product</h5>
 
 ```javascript
