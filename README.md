@@ -1,131 +1,104 @@
-<h1>Microservices E-Commerce</h1>
-<p>Welcome to our microservices-based e-commerce application, utilizing technologies such as Consul Discovery, Spring Cloud Config, Spring Cloud Gateway, Angular, and other specific services.</p>
-<h3>Architecture:</h3>
-<img src="captures/capture1.png"></img>
+Microservices E-Commerce
+Welcome to our microservices-based e-commerce application, leveraging cutting-edge technologies such as Consul Discovery, Spring Cloud Config, Spring Cloud Gateway, Angular, and other specialized services.
+
+Architecture:
+Architecture
+
 <details>
-
-        <h5>Consul registered services:</h5>
-    <img src="captures/all-registered.jpg"></img>
-
-
+<summary><h5>Consul Registered Services:</h5></summary>
+<img src="captures/all-registered.jpg"></img>
 </details>
-
 <details>
-
-        <h5>Entity Customer</h5>
-
-
-```javascript
+<summary><h5>Entity Customer</h5></summary>
+java
+Copy code
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class Customer {
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String name;
-        private String email;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String email;
 }
-```
-
 <h5>Repository CustomerRepository</h5>
-
-```javascript
+java
+Copy code
 @RepositoryRestResource
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }
-```
-
-<h5>Données de test</h5>
-
-```javascript
+<h5>Test Data</h5>
+java
+Copy code
 @Bean
 CommandLineRunner start(CustomerRepository customerRepository){
-        return args -> {
-                customerRepository.saveAll(List.of(
-                        Customer.builder().name("Anas").email("anas@gmail.com").build(),
-                        Customer.builder().name("Younes").email("younes@gmail.com").build(),
-                        Customer.builder().name("Ismail").email("ismail@gmail.com").build()
-                ));
-                customerRepository.findAll().forEach(System.out::println);
-        };
+    return args -> {
+        customerRepository.saveAll(List.of(
+            Customer.builder().name("Anas").email("anas@gmail.com").build(),
+            Customer.builder().name("Younes").email("younes@gmail.com").build(),
+            Customer.builder().name("Ismail").email("ismail@gmail.com").build()
+        ));
+        customerRepository.findAll().forEach(System.out::println);
+    };
 }
-```
-<h5>Customer service Test</h5>
+<h5>Customer Service Test</h5>
 <img src="captures/customer-service-test.jpg" width="700">
 </details>
 <details>
-
-        <h5>Bean de configuration</h5>
-        <img src="captures/gateway-bean.jpg" width="700">
-        <h5>Configuration de la Gateway</h5>
-        <img src="captures/gateway-properties.jpg" width="700">
-        <h5>Test de la gateway</h5>
-        <img src="captures/order-service-full-order.jpg" width="700">
-        </details>
-
-<details>
-        <details1>
-  <!-- Your content goes here -->
+<summary><h5>Bean de Configuration</h5></summary>
+<img src="captures/gateway-bean.jpg" width="700">
+<h5>Configuration de la Gateway</h5>
+<img src="captures/gateway-properties.jpg" width="700">
+<h5>Test de la Gateway</h5>
+<img src="captures/order-service-full-order.jpg" width="700">
 </details>
-
+<details>
+<details1>
+  <!-- Your content goes here -->
+</details1>
 <h5>Entity Product</h5>
-
-```javascript
+java
+Copy code
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class Product {
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String name;
-        private double price;
-        private int quantity;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private double price;
+    private int quantity;
 }
-```
-
 <h5>Repository ProductRepository</h5>
-
-```javascript
+java
+Copy code
 @RepositoryRestResource
 public interface ProductRepository extends JpaRepository<Product, Long> {
 }
-
-```
-
-<h5>Données de test</h5>
-
-
-```javascript
+<h5>Test Data</h5>
+java
+Copy code
 @Bean
 CommandLineRunner start(ProductRepository productRepository)
 {
-        return args -> {
-                Random
-                random = new Random();
-                for (int i = 1;
-                i < 10;
-                i++
-        )
-                {
-                        productRepository.saveAll(List.of(
-                                Product.builder()
-                                        .name("Laptop " + i)
-                                        .price(1200 + Math.random() * 10000)
-                                        .quantity(1 + random.nextInt(200)).build()
-                        ));
-                }
-
-        };
+    return args -> {
+        Random random = new Random();
+        for (int i = 1; i < 10; i++)
+        {
+            productRepository.saveAll(List.of(
+                Product.builder()
+                    .name("Laptop " + i)
+                    .price(1200 + Math.random() * 10000)
+                    .quantity(1 + random.nextInt(200)).build()
+            ));
+        }
+    };
 }
-```
-
-<h5>Test de l'inventory service</h5>
-        <img src="captures/inventory-test-.jpg" width="700">
-        </details>
-
+<h5>Test de l'Inventory Service</h5>
+<img src="captures/inventory-test-.jpg" width="700">
+</details>
 <details>
-        
-        <h5>Entity Order</h5>
-
-```javascript
+<h5>Entity Order</h5>
+java
+Copy code
 @Entity
 @Table(name="orders")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
@@ -148,10 +121,9 @@ public class Order {
         return somme;
     }
 }
-```
 <h5>Entity ProductItem</h5>
-
-```javascript
+java
+Copy code
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class ProductItem {
@@ -170,21 +142,18 @@ public class ProductItem {
         return price*quantity*(1-discount);
     }
 }
-```
 <h5>Customer Model</h5>
-
-```javascript
+java
+Copy code
 @Data
 public class Customer {
     private Long id;
     private String name;
     private String email;
 }
-```
-
 <h5>Product Model</h5>
-
-```javascript
+java
+Copy code
 @Data
 public class Product {
     private Long id;
@@ -192,31 +161,27 @@ public class Product {
     private double price;
     private int quantity;
 }
-```
-
 <h5>Repository OrderRepository</h5>
-
-```javascript
+java
+Copy code
 @RepositoryRestResource
 public interface OrderRepository extends JpaRepository<Order, Long> {
     @RestResource(path = "/byCustomerId")
     List<Order> findByCustomerId(@Param("customerId") Long customerId);
 }
-```
 <h5>Customer Rest Client</h5>
-
-```javascript
+java
+Copy code
 @FeignClient(name = "customer-service")
 public interface CustomerRestClientService {
-@GetMapping("/customers/{id}?projection=fullCustomer")
+    @GetMapping("/customers/{id}?projection=fullCustomer")
     public Customer customerById(@PathVariable Long id);
-@GetMapping("/customers?projection=fullCustomer")
+    @GetMapping("/customers?projection=fullCustomer")
     public PagedModel<Customer> allCustomers();
 }
-```
 <h5>Inventory Rest Client</h5>
-
-```javascript
+java
+Copy code
 @FeignClient(name = "inventory-service")
 public interface InventoryRestClientService {
     @GetMapping("/products/{id}?projection=fullProduct")
@@ -224,12 +189,11 @@ public interface InventoryRestClientService {
     @GetMapping("/products?projection=fullProduct")
     public PagedModel<Product> allProducts();
 }
-```
 <h5>Configuration</h5>
 <img src="captures/open-feign-config.jpg" width="700">
 <h5>fullOrder</h5>
-
-```javascript
+java
+Copy code
 @GetMapping("/fullOrder/{id}")
 public Order getOrder(@PathVariable Long id){
     Order order=orderRepository.findById(id).get();
@@ -241,15 +205,13 @@ public Order getOrder(@PathVariable Long id){
     });
     return order;
 }
-```
-
 <img src="captures/order-service-full-order.jpg" width="700">
-        </details>
-        <details>
-        <summary style="font-size:15px;cursor:pointer">📌 6. BILLING-SERVICE avec consul config et vault (Click to expand 🖱)</summary>
-        <h5>Dependencies</h5>
-
-```javascript
+</details>
+<details>
+<summary style="font-size:15px;cursor:pointer">📌 6. BILLING-SERVICE avec Consul Config et Vault (Click to expand 🖱)</summary>
+<h5>Dependencies</h5>
+java
+Copy code
 <dependency>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-consul-config</artifactId>
@@ -262,12 +224,11 @@ public Order getOrder(@PathVariable Long id){
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-vault-config</artifactId>
 </dependency>
-```
-<h5>Consul config</h5>
+<h5>Consul Config</h5>
 <img src="captures/token-key-value.jpg" width="700">
-<h5>Controlleur de test</h5>
-
-```javascript
+<h5>Controller Test</h5>
+java
+Copy code
 @RestController
 public class ConsulConfigRestController {
     @Autowired
@@ -279,10 +240,9 @@ public class ConsulConfigRestController {
     @Value("${token.refreshTokenTimeout}")
     private long refreshTokenTimeout;
 }
-``` 
-<h5>Avec class de configuration</h5>
-
-```java
+<h5>Avec Class de Configuration</h5>
+java
+Copy code
 @RestController
 public class ConsulConfigRestController {
     @Autowired
@@ -298,25 +258,17 @@ public class ConsulConfigRestController {
         return Map.of("consulConfig",myConsulConfig, "vaultConfig",myVaultConfig);
     }
 }
-```
-
-<h5>Configuration des secrets avec vault</h5>
+<h5>Configuration des Secrets avec Vault</h5>
 <img src="captures/secrets.PNG" width="700">
-        </details>
-        <details>
-        <summary style="font-size:15px;cursor:pointer">📌 7. FRONTEND ANGULAR (Click to expand 🖱)</summary>
-<h5>Customers list</h5>
+</details>
+<details>
+<summary style="font-size:15px;cursor:pointer">📌 7. FRONTEND ANGULAR (Click to expand 🖱)</summary>
+<h5>Customers List</h5>
 <img src="captures/customers.jpg" width="700">
-<h5>Products list</h5>
+<h5>Products List</h5>
 <img src="captures/products.jpg" width="700">
-<h5>Orders list</h5>
+<h5>Orders List</h5>
 <img src="captures/cust-orders.jpg" width="700">
-<h5>Order details</h5>
+<h5>Order Details</h5>
 <img src="captures/order-details.jpg" width="700">
 </details>
-
-#   A c t i v i t y 4 - M i c r o S e r v i c e 
- 
- #   A c t i v i t y 4 - M i c r o S e r v i c e 
- 
- 
