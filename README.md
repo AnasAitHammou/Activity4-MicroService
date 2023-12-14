@@ -41,9 +41,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 CommandLineRunner start(CustomerRepository customerRepository){
         return args -> {
                 customerRepository.saveAll(List.of(
-                        Customer.builder().name("Mohamed").email("med@gmail.com").build(),
-                        Customer.builder().name("Hassan").email("hasan@gmail.com").build(),
-                        Customer.builder().name("IMane").email("imane@gmail.com").build()
+                        Customer.builder().name("Anas").email("anas@gmail.com").build(),
+                        Customer.builder().name("Younes").email("younes@gmail.com").build(),
+                        Customer.builder().name("Ismail").email("ismail@gmail.com").build()
                 ));
                 customerRepository.findAll().forEach(System.out::println);
         };
@@ -312,3 +312,5 @@ public class ConsulConfigRestController {
 <img src="captures/order-details.jpg" width="700">
 </details>
 
+#   A c t i v i t y 4 - M i c r o S e r v i c e  
+ 
