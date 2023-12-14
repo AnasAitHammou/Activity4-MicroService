@@ -63,8 +63,7 @@ CommandLineRunner start(CustomerRepository customerRepository){
         </details>
 
 <details>
-        <details>
-  <summary class="expandable-section">📝 4. INVENTORY-SERVICE (Click to expand 🖱)</summary>
+        <details1>
   <!-- Your content goes here -->
 </details>
 
